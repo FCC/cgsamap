@@ -177,7 +177,7 @@ function onFeatureSelect(feature) {
                                      null,
                                      "<div style='font-size:.8em'><br>CALL SIGN: " + feature.attributes.CALL_SIGN+
 									 "<br>MARKET: " + feature.attributes.MARKET+"<br>BLOCK: " + feature.attributes.BLOCK+
-									 "<br>Callsign Details: <a href='" + feature.attributes.URL+"' target='blank'>"+feature.attributes.URL+ "</a></div>", null, true, onPopupClose);
+									 "<br>Callsign Details: <a href='" + feature.attributes.LIC_LINK+"' target='blank'>"+feature.attributes.LIC_LINK+ "</a></div>", null, true, onPopupClose);
             feature.popup = popup;
             map.addPopup(popup);
         }
@@ -255,7 +255,7 @@ function drawCallsignMap(callsign){
 $.getJSON("data/cgsa.geojson", function (data) {
 				var updated_date;
 				cgsaJson=data;
-				updated_date=cgsaJson.features[0].properties.date.toString();
+				updated_date=cgsaJson.features[0].properties.ASOF.toString();
 				//alert("updated_date: " + updated_date);
 				$("#updated_date").text("Cellular Geographic Service Areas as of " + updated_date);
 				myJson.type=cgsaJson.type;
