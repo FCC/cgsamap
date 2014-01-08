@@ -1,4 +1,3 @@
-
 $(document).ready(function () {	
 	$('#goUser').click(function(){
 	    getCallSignInput('callsign');
@@ -19,6 +18,8 @@ $(document).ready(function () {
 //    $( "#callsign" ).autocomplete( { source: data.split( "\n" ) } );
 //});
 
+
+//$("#updated_date").text("text");
 var cgsaJson;
 
 var layers=[];
@@ -26,7 +27,6 @@ var fullExtent = new OpenLayers.Bounds(
 		 -17107255, 2910721, -4740355, 6335100
 		 
   );
-
 
 var myJson = {};
 //var mySourceJson = {};
@@ -253,10 +253,32 @@ function drawCallsignMap(callsign){
 }
 
 $.getJSON("data/cgsa.geojson", function (data) {
+				var updated_date;
 				cgsaJson=data;
+				updated_date=cgsaJson.features[0].properties.date.toString();
+				//alert("updated_date: " + updated_date);
+				$("#updated_date").text("Cellular Geographic Service Areas as of " + updated_date);
 				myJson.type=cgsaJson.type;
 				myJson.features=[];
-				map.zoomToExtent(fullExtent,true);				 
+				map.zoomToExtent(fullExtent,true);		
+				
+	var paras=window.location.href.split("#");
+	if (paras.length==1){
+		//do nothing
+	}
+	else{
+		if(paras[1].length>0){
+			//var parasArray=decodeURIComponent(paras[1]).replace(/\s/g, "").split(",");
+			var callsignPara=paras[1];
+			drawCallsignMap(callsignPara);
+			//console.log("paras: " +parasArray.toString()); 
+			//alert("paras: " +callsignPara); 
+			$("#callsign_lbl").text(callsignPara);
+    	}
+	}
+
+				
+				
 })
 	
 
