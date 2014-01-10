@@ -177,7 +177,7 @@ function onFeatureSelect(feature) {
                                      null,
                                      "<div style='font-size:.8em'><br>CALL SIGN: " + feature.attributes.CALL_SIGN+
 									 "<br>MARKET: " + feature.attributes.MARKET+"<br>BLOCK: " + feature.attributes.BLOCK+
-									 "<br>Callsign Details: <a href='" + feature.attributes.LIC_LINK+"' target='blank'>"+feature.attributes.LIC_LINK+ "</a></div>", null, true, onPopupClose);
+									 "<br><a href='" + feature.attributes.LIC_LINK+"' target='blank'> ULS Callsign Details</a></div>", null, true, onPopupClose);
             feature.popup = popup;
             map.addPopup(popup);
         }
